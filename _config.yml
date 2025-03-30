@@ -6,3 +6,4 @@ header_pages:
   - materials.md
   - electronics.md
   - software.md
+favicon: "/assets/images/favicon.ico"
