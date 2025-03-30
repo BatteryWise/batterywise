@@ -1,12 +1,9 @@
 theme: minima
 title: BatteryWise
 description: A sustainable project in Engineering & Sustainability
-navbar:
-  - name: Introduction
-    link: index.md
-  - name: Materials
-    link: materials.md
-  - name: Electronics
-    link: electronics.md
-  - name: Software
-    link: software.md
+header_pages:
+  - index.md
+  - requirements.md
+  - electronics.md
+  - software.md
+  - work-in-progress.md
