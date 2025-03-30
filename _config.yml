@@ -1,5 +1,4 @@
 theme: minima
-  skin: solarized  # Opties zijn: classic, dark, solarized, solarized-dark
 title: BatteryWise
 description: A sustainable project in Engineering & Sustainability
 header_pages:
