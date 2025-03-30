@@ -1,6 +1,5 @@
 theme: minima
-title: Battery**<span style="color:green;">Wise</span>**
-
+title: BatteryWise
 description: A sustainable project in Engineering & Sustainability
 header_pages:
   - index.md
