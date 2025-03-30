@@ -7,7 +7,7 @@ layout: page
 
 Welcome to **BatteryWise**, a sustainable project within **Engineering & Sustainability**.  
 
-Link to our GitHub repo: https://github.com/BatteryWise/batterywise/tree/main
+Link to our GitHub [repo](https://github.com/BatteryWise/batterywise/tree/main).
 
 ### Team Members:
 - **Beau Forrez**
