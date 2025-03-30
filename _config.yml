@@ -6,3 +6,5 @@ header_pages:
   - materials.md
   - electronics.md
   - software.md
+favicon: /images/favicon.ico
+logo: /images/logo.png
