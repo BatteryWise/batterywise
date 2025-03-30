@@ -6,5 +6,3 @@ header_pages:
   - materials.md
   - electronics.md
   - software.md
-favicon: "/assets/images/favicon.ico"
-include: ["assets/js/dark-mode.js"]
