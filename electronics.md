@@ -11,8 +11,6 @@ Below is the schematic of the circuit used:
 
 ![Fritzing Schematic](images/circuit.png)
 
-### Circuit Connections:
-
 The schematic shows the connections between the different components:
 
 - **Power connections:**
@@ -24,17 +22,17 @@ The schematic shows the connections between the different components:
     - **GPIO5**
     - **GPIO17**
 
-- **OLED Screen:**
+- **OLED screen:**
   - GND → **GND**
   - 3V3 → **3V3**
   - SCK → **GPIO22**
   - SDA → **GPIO21**
 
-- **Battery Probe:**
+- **Battery probe:**
   - **GPIO14**: ADC connection to the positive terminal of the battery.
   - **GND**: Negative terminal of the battery.
 
-### Summary of Connections:
+### Summary of connections:
 
 | Component           | Pin/Connection        | GPIO Pin         |
 |---------------------|-----------------------|------------------|
