@@ -7,7 +7,9 @@ layout: page
 
 Welcome to our sustainable project within the course **Engineering & Sustainability**. In this project, we've developed a simple and easy-to-recreate batterytester. Our focus lies in raising awareness for battery disposal, to reduce as much electronic waste as possible.
 
-Link to our GitHub [repo](https://github.com/BatteryWise/batterywise/tree/main).
+On this site, you can find a step-by-step tutorial to make your own ESP32-based batterytester.
+
+[This](https://github.com/BatteryWise/batterywise/tree/main) is a link to our GitHub repo. [repo](https://github.com/BatteryWise/batterywise/tree/main)
 
 ### Team members:
 - **Beau Forrez**
