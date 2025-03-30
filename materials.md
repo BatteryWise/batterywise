@@ -5,9 +5,9 @@ title: Materials
 
 # Materials
 
-In this section, we list the materials needed for the project. 
+In this section, the materials needed for the project are listed. 
 
-### Essential Components:
+### Essential components:
 - **ESP32 Development Board**  
   Along with the required (micro-)USB(-C) cable for programming and power.
 
@@ -15,14 +15,12 @@ In this section, we list the materials needed for the project.
 
 - **OLED Screen (SSD1306 or similar)**  
 
-### Input Devices:
 - **3 Buttons**  
   Used for user input.
 
-### Wiring:
 - **DuPont Wires**:
-  - **9x Male-to-Female** 
-  - **5x Male-to-Male** 
+  - 9x Male-to-Female
+  - 5x Male-to-Male
 
 ---
 
