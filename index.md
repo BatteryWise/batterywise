@@ -9,7 +9,7 @@ Welcome to our sustainable project within the course **Engineering & Sustainabil
 
 Link to our GitHub [repo](https://github.com/BatteryWise/batterywise/tree/main).
 
-### Team Members:
+### Team members:
 - **Beau Forrez**
 - **Tano Pannekoucke**
 - **Elias Neels**
