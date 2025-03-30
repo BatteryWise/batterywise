@@ -1,6 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function () {
   const toggleButton = document.getElementById("dark-mode-toggle");
   const body = document.body;
+
+  if (!toggleButton) {
+    console.error("Dark mode button not found!");
+    return;
+  }
 
   // Check user preference in localStorage
   if (localStorage.getItem("dark-mode") === "enabled") {
@@ -17,4 +22,4 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("dark-mode", "disabled");
     }
   });
-});
+};
