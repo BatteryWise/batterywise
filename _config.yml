@@ -1,5 +1,5 @@
 theme: minima
-  skin: dark  # Opties zijn: classic, dark, solarized, solarized-dark
+  skin: solarized  # Opties zijn: classic, dark, solarized, solarized-dark
 title: BatteryWise
 description: A sustainable project in Engineering & Sustainability
 header_pages:
@@ -10,19 +10,4 @@ header_pages:
 favicon: /images/favicon.ico
 logo: /images/logo.png
 footer_text: "© 2025 BatteryWise - Een duurzaam project voor batterijbeheer"
-# Site instellingen
-lang: nl  # Taalcode
-timezone: Europe/Brussels  # Tijdzone
-permalink: /:title/  # URL-formaat voor posts
-author:
-  name: BatteryWise Team
-  email: your-email@example.com
 
-# Social media links die in de footer verschijnen
-social_links:
-  github: batterywise
-  linkedin: batterywiseproject
-  instagram: batterywise
-  facebook: batterywise
-  twitter: batterywise
-  youtube: batterywise
