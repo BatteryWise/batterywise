@@ -1,6 +1,7 @@
 # BatteryWise
  Engineering & Sustainability  
-[Visit our site](https://batterywise.github.io/batterywise/){:target="_blank"}
+ 
+<a href="https://batterywise.github.io/batterywise/" target="_blank">Visit our site</a>
 
 **Beau Forrez**  
 **Tano Pannekoucke**  
