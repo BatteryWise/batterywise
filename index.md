@@ -1,8 +1,14 @@
-# **Battery**<span style="color:green;">Wise</span>
+---
+title: Introduction
+layout: page
+---
 
-### Engineering & Sustainability  
-A diy ESP32-based batterytester
-**Beau Forrez**  
-**Tano Pannekoucke**  
-**Elias Neels**  
-**Thibaut Beck**  
+# Battery**<span style="color:green;">Wise</span>**
+
+Welcome to **BatteryWise**, a sustainable project within **Engineering & Sustainability**.  
+
+### Team Members:
+- **Beau Forrez**
+- **Tano Pannekoucke**
+- **Elias Neels**
+- **Thibaut Beck**
