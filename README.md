@@ -1,6 +1,6 @@
 # BatteryWise
 
-### Engineering & Sustainability  
+ Engineering & Sustainability  
 
 **Beau Forrez**  
 **Tano Pannekoucke**  
