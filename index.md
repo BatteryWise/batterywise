@@ -2,6 +2,8 @@
 
 ### Engineering & Sustainability  
 
+A diy ESP32-based batterytester
+
 **Beau Forrez**  
 **Tano Pannekoucke**  
 **Elias Neels**  
