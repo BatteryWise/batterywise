@@ -5,8 +5,4 @@ layout: page
 
 # Software
 
-This section describes the **software architecture** of BatteryWise.
-
-- **ESPHome configuration**
-- **MQTT communication**
-- **Firmware updates via OTA**
+The software section of this project could be done in ArduinoIDE, but our advice is to use PlatformIO in VS Code to program the ESP32.
