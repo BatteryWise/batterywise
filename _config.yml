@@ -1,3 +1,14 @@
 theme: minima
 title: BatteryWise
-description: A easy-to-build batterytester
+description: A sustainable project in Engineering & Sustainability
+navbar:
+  - name: Introduction
+    link: index.md
+  - name: Requirements
+    link: requirements.md
+  - name: Electronics
+    link: electronics.md
+  - name: Software
+    link: software.md
+  - name: Work in Progress
+    link: work-in-progress.md
