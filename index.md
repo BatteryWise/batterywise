@@ -1,8 +1,3 @@
----
-layout: default
-title: BatteryWise
----
-
 # **Battery**<span style="color:green;">Wise</span>
 
 ### Engineering & Sustainability  
