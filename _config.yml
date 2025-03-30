@@ -3,7 +3,6 @@ title: BatteryWise
 description: A sustainable project in Engineering & Sustainability
 header_pages:
   - index.md
-  - requirements.md
+  - materials.md
   - electronics.md
   - software.md
-  - work-in-progress.md
