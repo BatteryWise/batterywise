@@ -1,32 +1,18 @@
 ---
-layout: default
-title: BatteryWise
+title: Software
+layout: page
 ---
 
-# BatteryWise
+# Software
 
-<div class="categories">
-  <span class="category">Engineering & Sustainability</span>
-</div>
+The software section of this project could be done in Arduino IDE, but our advice is to use [PlatformIO](https://docs.platformio.org/en/latest/integration/ide/vscode.html){:target="_blank"} in VS Code to program the ESP32.
 
-<div class="website-link">
-  <a href="https://batterywise.github.io/batterywise/" target="_blank">Visit our site</a>
-</div>
-
-<div class="team-members">
-  <h3>Team Members</h3>
-  <ul>
-    <li>Beau Forrez</li>
-    <li>Tano Pannekoucke</li>
-    <li>Elias Neels</li>
-    <li>Thibaut Beck</li>
-  </ul>
-</div>
-
-<h2>Code:</h2>
+# Code
 
 <div class="code-container">
-  <pre><code class="language-cpp">#include &lt;Arduino.h&gt;
+<pre>
+<code>
+#include &lt;Arduino.h&gt;
 #include &lt;Wire.h&gt;
 #include &lt;Adafruit_GFX.h&gt;
 #include &lt;Adafruit_SSD1306.h&gt;
@@ -35,13 +21,13 @@ title: BatteryWise
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
-#define OLED_RESET    -1
+#define OLED_RESET -1
 #define SCREEN_ADDRESS 0x3C
 
-#define SWITCH_PIN 18  
-#define SELECT_PIN 5   
-#define BACK_PIN 17    
-#define BATTERY_PIN 14 
+#define SWITCH_PIN 18
+#define SELECT_PIN 5
+#define BACK_PIN 17
+#define BATTERY_PIN 14
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
@@ -60,19 +46,19 @@ const unsigned long debounceDelay = 50;
 
 void updateMenu() {
     display.clearDisplay();
-    display.setFont(&FreeSansBold9pt7b);
+    display.setFont(&amp;FreeSansBold9pt7b);
     display.setTextColor(SSD1306_WHITE);
 
     for (int i = 0; i &lt; menuLength; i++) {
-        int yPos = 20 + (i * 20);  
+        int yPos = 20 + (i * 20);
 
         if (i == selectedMenuItem) {
-            display.fillRect(5, yPos - 12, 118, 18, SSD1306_WHITE);  
-            display.setTextColor(SSD1306_BLACK);  
+            display.fillRect(5, yPos - 12, 118, 18, SSD1306_WHITE);
+            display.setTextColor(SSD1306_BLACK);
         } else {
             display.setTextColor(SSD1306_WHITE);
         }
-        
+
         display.setCursor(10, yPos);
         display.println(menuItems[i]);
     }
@@ -82,14 +68,14 @@ void updateMenu() {
 
 void showBatteryMeasurement() {
     display.clearDisplay();
-    display.setFont(&FreeSansBold12pt7b);
+    display.setFont(&amp;FreeSansBold12pt7b);
     display.setTextColor(SSD1306_WHITE);
     display.setCursor(10, 20);
     display.println(menuItems[selectedMenuItem]);
 
     while (true) {
         int rawValue = analogRead(BATTERY_PIN);
-        float voltage = rawValue * (3.3 / 4095.0); 
+        float voltage = rawValue * (3.3 / 4095.0);
 
         display.fillRect(10, 40, 100, 20, SSD1306_BLACK);
 
@@ -130,16 +116,16 @@ void loop() {
     bool currentSelectState = digitalRead(SELECT_PIN);
     bool currentBackState = digitalRead(BACK_PIN);
 
-    if (!inSubMenu && currentSwitchState == LOW && lastSwitchState == HIGH) {
-        if (millis() - lastDebounceTime > debounceDelay) {
+    if (!inSubMenu &amp;&amp; currentSwitchState == LOW &amp;&amp; lastSwitchState == HIGH) {
+        if (millis() - lastDebounceTime &gt; debounceDelay) {
             selectedMenuItem = (selectedMenuItem + 1) % menuLength;
             updateMenu();
             lastDebounceTime = millis();
         }
     }
 
-    if (!inSubMenu && currentSelectState == LOW && lastSelectState == HIGH) {
-        if (millis() - lastDebounceTime > debounceDelay) {
+    if (!inSubMenu &amp;&amp; currentSelectState == LOW &amp;&amp; lastSelectState == HIGH) {
+        if (millis() - lastDebounceTime &gt; debounceDelay) {
             inSubMenu = true;
             showBatteryMeasurement();
             lastDebounceTime = millis();
@@ -149,38 +135,36 @@ void loop() {
     lastSwitchState = currentSwitchState;
     lastSelectState = currentSelectState;
     lastBackState = currentBackState;
-}</code></pre>
+}
+</code>
+</pre>
 </div>
 
 <style>
-.code-container {
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  padding: 15px;
-  overflow-x: auto;
-}
-
-.team-members {
-  margin: 20px 0;
-}
-
-.team-members ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.team-members li {
-  margin-bottom: 5px;
-}
-
-.category {
-  background-color: #e0e0e0;
-  padding: 3px 8px;
-  border-radius: 3px;
-  font-size: 0.9em;
-}
-
-.website-link {
-  margin: 15px 0;
-}
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+  }
+  .code-container {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 10px;
+    overflow-x: auto;
+  }
+  .code-container pre {
+    margin: 0;
+    padding: 0;
+  }
+  .code-container code {
+    font-family: monospace;
+    display: block;
+    white-space: pre;
+  }
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 </style>
