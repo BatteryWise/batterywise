@@ -11,13 +11,12 @@ The software section of this project could be done in Arduino IDE, but our advic
 
 This is the code used:
 
-```cpp
-#include <Arduino.h>
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-#include <Fonts/FreeSansBold9pt7b.h>
-#include <Fonts/FreeSansBold12pt7b.h>
+<pre><code class="language-cpp">#include &lt;Arduino.h&gt;
+#include &lt;Wire.h&gt;
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+#include &lt;Fonts/FreeSansBold9pt7b.h&gt;
+#include &lt;Fonts/FreeSansBold12pt7b.h&gt;
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
@@ -29,7 +28,7 @@ This is the code used:
 #define BACK_PIN 17    
 #define BATTERY_PIN 14 
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &amp;Wire, OLED_RESET);
 
 const char* menuItems[] = { "AA", "AAA", "CR2032" };
 const int menuLength = sizeof(menuItems) / sizeof(menuItems[0]);
@@ -46,10 +45,10 @@ const unsigned long debounceDelay = 50;
 
 void updateMenu() {
     display.clearDisplay();
-    display.setFont(&FreeSansBold9pt7b);
+    display.setFont(&amp;FreeSansBold9pt7b);
     display.setTextColor(SSD1306_WHITE);
 
-    for (int i = 0; i < menuLength; i++) {
+    for (int i = 0; i &lt; menuLength; i++) {
         int yPos = 20 + (i * 20);  
 
         if (i == selectedMenuItem) {
@@ -68,7 +67,7 @@ void updateMenu() {
 
 void showBatteryMeasurement() {
     display.clearDisplay();
-    display.setFont(&FreeSansBold12pt7b);
+    display.setFont(&amp;FreeSansBold12pt7b);
     display.setTextColor(SSD1306_WHITE);
     display.setCursor(10, 20);
     display.println(menuItems[selectedMenuItem]);
@@ -116,16 +115,16 @@ void loop() {
     bool currentSelectState = digitalRead(SELECT_PIN);
     bool currentBackState = digitalRead(BACK_PIN);
 
-    if (!inSubMenu && currentSwitchState == LOW && lastSwitchState == HIGH) {
-        if (millis() - lastDebounceTime > debounceDelay) {
+    if (!inSubMenu &amp;&amp; currentSwitchState == LOW &amp;&amp; lastSwitchState == HIGH) {
+        if (millis() - lastDebounceTime &gt; debounceDelay) {
             selectedMenuItem = (selectedMenuItem + 1) % menuLength;
             updateMenu();
             lastDebounceTime = millis();
         }
     }
 
-    if (!inSubMenu && currentSelectState == LOW && lastSelectState == HIGH) {
-        if (millis() - lastDebounceTime > debounceDelay) {
+    if (!inSubMenu &amp;&amp; currentSelectState == LOW &amp;&amp; lastSelectState == HIGH) {
+        if (millis() - lastDebounceTime &gt; debounceDelay) {
             inSubMenu = true;
             showBatteryMeasurement();
             lastDebounceTime = millis();
@@ -135,4 +134,15 @@ void loop() {
     lastSwitchState = currentSwitchState;
     lastSelectState = currentSelectState;
     lastBackState = currentBackState;
-}
+}</code></pre>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("copyButton").addEventListener("click", function() {
+        const codeBlock = document.querySelector("pre code");
+        navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+            alert("Code copied!");
+        }).catch(err => console.error("Copy error:", err));
+    });
+});
+</script>
