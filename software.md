@@ -7,11 +7,13 @@ layout: page
 
 The software section of this project could be done in Arduino IDE, but our advice is to use [PlatformIO](https://docs.platformio.org/en/latest/integration/ide/vscode.html){:target="_blank"} in VS Code to program the ESP32.
 
-# Battery Menu Code
+# Code
 
 This is the code used:
 
-<pre><code class="language-cpp">#include &lt;Arduino.h&gt;
+<div class="highlight">
+<pre><code class="language-cpp">
+#include &lt;Arduino.h&gt;
 #include &lt;Wire.h&gt;
 #include &lt;Adafruit_GFX.h&gt;
 #include &lt;Adafruit_SSD1306.h&gt;
@@ -134,15 +136,6 @@ void loop() {
     lastSwitchState = currentSwitchState;
     lastSelectState = currentSelectState;
     lastBackState = currentBackState;
-}</code></pre>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("copyButton").addEventListener("click", function() {
-        const codeBlock = document.querySelector("pre code");
-        navigator.clipboard.writeText(codeBlock.innerText).then(() => {
-            alert("Code copied!");
-        }).catch(err => console.error("Copy error:", err));
-    });
-});
-</script>
+}
+</code></pre>
+</div>
