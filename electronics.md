@@ -9,7 +9,7 @@ This section provides details about the electronics used in the project.
 
 Below is the schematic of the circuit used:
 
-![Fritzing Schematic](images/circuit.png)
+![Fritzing Schematic](images/circuit.png){:style="width:100%;max-width:800px;"}
 
 The schematic shows the connections between the different components:
 
