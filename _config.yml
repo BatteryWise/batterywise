@@ -6,3 +6,5 @@ header_pages:
   - materials.md
   - electronics.md
   - software.md
+plugins:
+  - jekyll-sass-converter
