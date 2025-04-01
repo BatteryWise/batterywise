@@ -1,19 +1,32 @@
 ---
-title: Software
-layout: page
+layout: default
+title: BatteryWise
 ---
 
-# Software
+# BatteryWise
 
-The software section of this project could be done in Arduino IDE, but our advice is to use [PlatformIO](https://docs.platformio.org/en/latest/integration/ide/vscode.html){:target="_blank"} in VS Code to program the ESP32.
+<div class="categories">
+  <span class="category">Engineering & Sustainability</span>
+</div>
 
-# Code
+<div class="website-link">
+  <a href="https://batterywise.github.io/batterywise/" target="_blank">Visit our site</a>
+</div>
 
-This is the code used:
+<div class="team-members">
+  <h3>Team Members</h3>
+  <ul>
+    <li>Beau Forrez</li>
+    <li>Tano Pannekoucke</li>
+    <li>Elias Neels</li>
+    <li>Thibaut Beck</li>
+  </ul>
+</div>
 
-<div class="highlight">
-<pre><code class="language-cpp">
-#include &lt;Arduino.h&gt;
+<h2>Code:</h2>
+
+<div class="code-container">
+  <pre><code class="language-cpp">#include &lt;Arduino.h&gt;
 #include &lt;Wire.h&gt;
 #include &lt;Adafruit_GFX.h&gt;
 #include &lt;Adafruit_SSD1306.h&gt;
@@ -30,7 +43,7 @@ This is the code used:
 #define BACK_PIN 17    
 #define BATTERY_PIN 14 
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &amp;Wire, OLED_RESET);
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 const char* menuItems[] = { "AA", "AAA", "CR2032" };
 const int menuLength = sizeof(menuItems) / sizeof(menuItems[0]);
@@ -47,7 +60,7 @@ const unsigned long debounceDelay = 50;
 
 void updateMenu() {
     display.clearDisplay();
-    display.setFont(&amp;FreeSansBold9pt7b);
+    display.setFont(&FreeSansBold9pt7b);
     display.setTextColor(SSD1306_WHITE);
 
     for (int i = 0; i &lt; menuLength; i++) {
@@ -69,7 +82,7 @@ void updateMenu() {
 
 void showBatteryMeasurement() {
     display.clearDisplay();
-    display.setFont(&amp;FreeSansBold12pt7b);
+    display.setFont(&FreeSansBold12pt7b);
     display.setTextColor(SSD1306_WHITE);
     display.setCursor(10, 20);
     display.println(menuItems[selectedMenuItem]);
@@ -117,16 +130,16 @@ void loop() {
     bool currentSelectState = digitalRead(SELECT_PIN);
     bool currentBackState = digitalRead(BACK_PIN);
 
-    if (!inSubMenu &amp;&amp; currentSwitchState == LOW &amp;&amp; lastSwitchState == HIGH) {
-        if (millis() - lastDebounceTime &gt; debounceDelay) {
+    if (!inSubMenu && currentSwitchState == LOW && lastSwitchState == HIGH) {
+        if (millis() - lastDebounceTime > debounceDelay) {
             selectedMenuItem = (selectedMenuItem + 1) % menuLength;
             updateMenu();
             lastDebounceTime = millis();
         }
     }
 
-    if (!inSubMenu &amp;&amp; currentSelectState == LOW &amp;&amp; lastSelectState == HIGH) {
-        if (millis() - lastDebounceTime &gt; debounceDelay) {
+    if (!inSubMenu && currentSelectState == LOW && lastSelectState == HIGH) {
+        if (millis() - lastDebounceTime > debounceDelay) {
             inSubMenu = true;
             showBatteryMeasurement();
             lastDebounceTime = millis();
@@ -136,6 +149,38 @@ void loop() {
     lastSwitchState = currentSwitchState;
     lastSelectState = currentSelectState;
     lastBackState = currentBackState;
-}
-</code></pre>
+}</code></pre>
 </div>
+
+<style>
+.code-container {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 15px;
+  overflow-x: auto;
+}
+
+.team-members {
+  margin: 20px 0;
+}
+
+.team-members ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.team-members li {
+  margin-bottom: 5px;
+}
+
+.category {
+  background-color: #e0e0e0;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.website-link {
+  margin: 15px 0;
+}
+</style>
