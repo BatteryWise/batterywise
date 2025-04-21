@@ -3,8 +3,6 @@ title: Site
 layout: page
 ---
 
-# Site
-
 ## Requirements
 
 To run this project properly, please ensure the following software is installed on your system:
