@@ -9,7 +9,15 @@ This section provides details about the electronics used in the project.
 
 Below is the schematic of the circuit used:
 
-![Fritzing Schematic](images/circuit.png){:style="width:100%;max-width:800px;"}
+<a href="#circuit">
+  <img src="images/circuit.png" alt="Fritzing Schematic" style="width:100%; max-width:800px; border-radius: 12px; cursor: pointer;">
+</a>
+
+<div id="circuit" class="lightbox">
+  <a href="#">
+    <img class="lightbox-content" src="images/circuit.png" alt="Fritzing Schematic">
+  </a>
+</div>
 
 The schematic shows the connections between the different components:
 
