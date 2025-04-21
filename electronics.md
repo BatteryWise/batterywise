@@ -44,3 +44,24 @@ The schematic shows the connections between the different components:
 | **Battery Probe**   | Positive Terminal     | GPIO14 (ADC)     |
 |                     | Negative Terminal     | GND              |
 
+## Usage
+Button connected to:
+- **GPIO18**: scroll through battery selection menu ( and send measurement over MQTT when a battery was already selected )
+- **GPIO5**: go back to battery selection meny
+- **GPIO17**: select battery type
+
+<div style="display: flex; justify-content: space-between; text-align: center;">
+  <div style="flex: 1; margin: 0 10px;">
+    <img src="/images/startup.png" alt="Afbeelding 1" style="width: 100%;">
+    <p>Startup screen</p>
+  </div>
+  <div style="flex: 1; margin: 0 10px;">
+    <img src="/images/menu.png" alt="Afbeelding 2" style="width: 100%;">
+    <p>Selection menu 2</p>
+  </div>
+  <div style="flex: 1; margin: 0 10px;">
+    <img src="/images/measurement.png" alt="Afbeelding 3" style="width: 100%;">
+    <p>Measurement screen 3</p>
+  </div>
+</div>
+
