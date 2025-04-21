@@ -3,20 +3,18 @@ layout: default
 title: Electronics
 ---
 
-<a id="close"></a>
-
 # Electronics
 
 This section provides details about the electronics used in the project.
 
 Below is the schematic of the circuit used:
 
-<a href="#circuit">
+<a href="#">
   <img src="images/circuit.png" alt="Fritzing Schematic" style="width:100%; max-width:800px; border-radius: 12px; cursor: pointer;">
 </a>
 
 <div id="circuit" class="lightbox">
-  <a href="#close">
+  <a href="#">
     <img class="lightbox-content" src="images/circuit.png" alt="Fritzing Schematic">
   </a>
 </div>
@@ -59,6 +57,8 @@ Button connected to:
 - **GPIO18**: scroll through battery selection menu ( and send measurement over MQTT when a battery was already selected )
 - **GPIO5**: go back to battery selection menu
 - **GPIO17**: select battery type
+
+<a id="close"></a>
 
 <style>
   .lightbox {
