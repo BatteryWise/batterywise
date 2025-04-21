@@ -55,25 +55,33 @@ Button connected to:
     display: none;
     position: fixed;
     z-index: 999;
-    padding-top: 60px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.8);
-  }
-
-  .lightbox-content {
-    margin: auto;
-    display: block;
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 12px;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
   }
 
   .lightbox:target {
-    display: block;
+    display: flex;
+  }
+
+  .lightbox a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
   }
 
   .thumb {
@@ -106,15 +114,21 @@ Button connected to:
 
 <!-- Lightboxes -->
 <div id="img1" class="lightbox">
-  <a href="#"><img class="lightbox-content" src="images/startup.png" alt="Startup screen"></a>
+  <a href="#">
+    <img class="lightbox-content" src="images/startup.png" alt="Startup screen">
+  </a>
 </div>
 
 <div id="img2" class="lightbox">
-  <a href="#"><img class="lightbox-content" src="images/menu.png" alt="Menu screen"></a>
+  <a href="#">
+    <img class="lightbox-content" src="images/menu.png" alt="Menu screen">
+  </a>
 </div>
 
 <div id="img3" class="lightbox">
-  <a href="#"><img class="lightbox-content" src="images/measurement.png" alt="Measurement screen"></a>
+  <a href="#">
+    <img class="lightbox-content" src="images/measurement.png" alt="Measurement screen">
+  </a>
 </div>
 
 
