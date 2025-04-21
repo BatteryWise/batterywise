@@ -18,9 +18,9 @@ The schematic shows the connections between the different components:
 
 - **Buttons:**
   - Three buttons are used, each connected to GND with the following GPIO pins:
-    - **GPIO18**
-    - **GPIO5**
-    - **GPIO17**
+    - **GPIO18**: scroll through the battery selection menu ( and send the measurement over MQTT when a battery was already selected )
+    - **GPIO5**: go back to the battery selection menu
+    - **GPIO17**: select the battery type
 
 - **OLED screen:**
   - GND → **GND**
