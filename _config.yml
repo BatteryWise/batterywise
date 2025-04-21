@@ -5,7 +5,6 @@ header_pages:
   - index.md
   - materials.md
   - electronics.md
-  - software.md
   - site.md
 plugins:
   - jekyll-sass-converter
