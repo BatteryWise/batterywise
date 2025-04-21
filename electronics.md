@@ -9,7 +9,7 @@ This section provides details about the electronics used in the project.
 
 Below is the schematic of the circuit used:
 
-<a href="#">
+<a href="#circuit">
   <img src="images/circuit.png" alt="Fritzing Schematic" style="width:100%; max-width:800px; border-radius: 12px; cursor: pointer;">
 </a>
 
