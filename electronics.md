@@ -52,16 +52,17 @@ Button connected to:
 
 <div style="display: flex; justify-content: space-between; text-align: center;">
   <div style="flex: 1; margin: 0 10px;">
-    <img src="images/startup.png" alt="Afbeelding 1" style="width: 100%;">
+    <img src="images/startup.png" alt="Afbeelding 1" style="width: 100%; border-radius: 12px;">
     <p>Startup screen</p>
   </div>
   <div style="flex: 1; margin: 0 10px;">
-    <img src="images/menu.png" alt="Afbeelding 2" style="width: 100%;">
+    <img src="images/menu.png" alt="Afbeelding 2" style="width: 100%; border-radius: 12px;">
     <p>Selection menu 2</p>
   </div>
   <div style="flex: 1; margin: 0 10px;">
-    <img src="images/measurement.png" alt="Afbeelding 3" style="width: 100%;">
+    <img src="images/measurement.png" alt="Afbeelding 3" style="width: 100%; border-radius: 12px;">
     <p>Measurement screen 3</p>
   </div>
 </div>
+
 
