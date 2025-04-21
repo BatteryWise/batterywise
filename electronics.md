@@ -50,19 +50,71 @@ Button connected to:
 - **GPIO5**: go back to battery selection meny
 - **GPIO17**: select battery type
 
+<style>
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 12px;
+  }
+
+  .lightbox:target {
+    display: block;
+  }
+
+  .thumb {
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+</style>
+
 <div style="display: flex; justify-content: space-between; text-align: center;">
   <div style="flex: 1; margin: 0 10px;">
-    <img src="images/startup.png" alt="Afbeelding 1" style="width: 100%; border-radius: 12px;">
+    <a href="#img1">
+      <img src="images/startup.png" alt="Afbeelding 1" class="thumb">
+    </a>
     <p>Startup screen</p>
   </div>
   <div style="flex: 1; margin: 0 10px;">
-    <img src="images/menu.png" alt="Afbeelding 2" style="width: 100%; border-radius: 12px;">
+    <a href="#img2">
+      <img src="images/menu.png" alt="Afbeelding 2" class="thumb">
+    </a>
     <p>Selection menu 2</p>
   </div>
   <div style="flex: 1; margin: 0 10px;">
-    <img src="images/measurement.png" alt="Afbeelding 3" style="width: 100%; border-radius: 12px;">
+    <a href="#img3">
+      <img src="images/measurement.png" alt="Afbeelding 3" class="thumb">
+    </a>
     <p>Measurement screen 3</p>
   </div>
+</div>
+
+<!-- Lightboxes -->
+<div id="img1" class="lightbox">
+  <a href="#"><img class="lightbox-content" src="images/startup.png" alt="Startup screen"></a>
+</div>
+
+<div id="img2" class="lightbox">
+  <a href="#"><img class="lightbox-content" src="images/menu.png" alt="Menu screen"></a>
+</div>
+
+<div id="img3" class="lightbox">
+  <a href="#"><img class="lightbox-content" src="images/measurement.png" alt="Measurement screen"></a>
 </div>
 
 
