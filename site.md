@@ -1,1 +1,6 @@
-Test
+---
+title: Site
+layout: page
+---
+
+# Site
