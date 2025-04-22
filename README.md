@@ -7,7 +7,19 @@
 **Tano Pannekoucke**  
 **Elias Neels**  
 **Thibaut Beck**  
+platformio.ini:
 
+```cpp
+[env:esp32doit-devkit-v1]
+platform = espressif32
+board = esp32doit-devkit-v1
+framework = arduino
+monitor_speed = 115200
+lib_deps = 
+	adafruit/Adafruit GFX Library@^1.12.0
+	adafruit/Adafruit SSD1306@^2.5.13
+	knolleary/PubSubClient
+```
 Code:
 ```cpp
 #include <Arduino.h>
@@ -362,3 +374,4 @@ void loop() {
     lastWifiCheckTime = millis();
   }
 }
+```
