@@ -3,10 +3,12 @@
 
  Visit our [site](https://batterywise.github.io/batterywise-pages-site/)
  
-**Beau Forrez**  
-**Tano Pannekoucke**  
-**Elias Neels**  
-**Thibaut Beck**  
+- **Beau Forrez**  
+- **Tano Pannekoucke**  
+- **Elias Neels**  
+- **Thibaut Beck**  
+
+
 platformio.ini:
 
 ```cpp
