@@ -5,6 +5,8 @@
 #include <Fonts/FreeSansBold9pt7b.h>
 #include <Fonts/FreeSans9pt7b.h>
 #include <Fonts/FreeMono9pt7b.h>
+#include <WiFi.h>
+#include <PubSubClient.h>
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
@@ -17,6 +19,18 @@
 #define BATTERY_PIN 14
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+// WiFi- en MQTT-configuratie
+const char* ssid = "ssid";
+const char* password = "password";
+const char* mqtt_server = "test.mosquitto.org";
+const int mqtt_port = 1883;
+const char* mqtt_user = ""; // Laat leeg indien niet nodig
+const char* mqtt_password = ""; // Laat leeg indien niet nodig
+const char* MQTT_TOPIC = "batterij";
+
+WiFiClient espClient;
+PubSubClient mqttClient(espClient);
 
 const char* menuItems[] = {"AA", "AAA", "CR2032", "LR44", "9V"};
 const int menuLength = sizeof(menuItems) / sizeof(menuItems[0]);
@@ -45,6 +59,93 @@ void drawCenteredText(const char* text, int y) {
   display.print(text);
 }
 
+void connectToMQTT() {
+  display.clearDisplay();
+  drawCenteredText("Connecting to MQTT", 30);
+  display.display();
+  
+  String clientId = "BatteryWise-";
+  clientId += String(random(0xffff), HEX);
+  
+  int attempts = 0;
+  while (!mqttClient.connected() && attempts < 5) {
+    bool success;
+    if (mqtt_user[0] != '\0') {
+      success = mqttClient.connect(clientId.c_str(), mqtt_user, mqtt_password);
+    } else {
+      success = mqttClient.connect(clientId.c_str());
+    }
+    
+    if (success) {
+      display.clearDisplay();
+      drawCenteredText("MQTT Connected", 30);
+      display.display();
+      delay(1000);
+      break;
+    } else {
+      delay(500);
+      attempts++;
+    }
+  }
+  
+  if (!mqttClient.connected()) {
+    display.clearDisplay();
+    drawCenteredText("MQTT Connection Failed", 30);
+    display.display();
+    delay(2000);
+  }
+}
+
+void sendMQTTUpdate(const char* batteryType, float voltage) {
+  if (!mqttClient.connected()) {
+    connectToMQTT();
+  }
+  
+  if (mqttClient.connected()) {
+    // Maak JSON-bericht
+    char mqttMessage[100];
+    sprintf(mqttMessage, "{ \"batteryType\": \"%s\", \"voltage\": %.2f }", batteryType, voltage);
+    
+    // Verstuur bericht
+    mqttClient.publish(MQTT_TOPIC, mqttMessage);
+    
+    // Log naar serial
+    Serial.print("MQTT verzonden: ");
+    Serial.println(mqttMessage);
+  }
+}
+
+
+void setupWiFiAndMQTT() {
+  // Verbind met WiFi
+  WiFi.begin(ssid, password);
+  display.clearDisplay();
+  display.setFont(NULL);
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  drawCenteredText("Connecting to WiFi", 30);
+  display.display();
+  
+  int attempts = 0;
+  while (WiFi.status() != WL_CONNECTED && attempts < 20) {
+    delay(500);
+    attempts++;
+  }
+  
+  if (WiFi.status() != WL_CONNECTED) {
+    display.clearDisplay();
+    drawCenteredText("WiFi Connection Failed", 30);
+    display.display();
+    delay(2000);
+  } else {
+    // Configureer MQTT-server
+    mqttClient.setServer(mqtt_server, mqtt_port);
+    
+    // Verbind met MQTT-broker
+    connectToMQTT();
+  }
+}
+
 void showStartupScreen() {
   display.clearDisplay(); // Create a text-based BatteryWise logo
   display.setFont(NULL);
@@ -60,7 +161,6 @@ void showStartupScreen() {
   display.display();
   delay(3000);
 }
-
 
 void updateMenu() {
   display.clearDisplay();
@@ -102,7 +202,6 @@ void updateMenu() {
   display.display();
 }
 
-
 void showBatteryMeasurement() {
   display.clearDisplay();
   display.setFont(&FreeSansBold9pt7b);
@@ -110,57 +209,88 @@ void showBatteryMeasurement() {
   drawCenteredText(menuItems[selectedMenuItem], 16);
   display.fillRect(0, 20, 128, 40, SSD1306_BLACK);
   display.display();
+  
+  float currentVoltage = 0.0;
+  
   while (true) {
+    bool currentSwitchState = digitalRead(SWITCH_PIN);
+    bool currentBackState = digitalRead(BACK_PIN);
+    
+    // Controleer of de SWITCH-knop is ingedrukt om de meting te verzenden
+    if (currentSwitchState == LOW && lastSwitchState == HIGH) {
+      if (millis() - lastDebounceTime > debounceDelay) {
+        // Stuur MQTT-update met de huidige meting
+        sendMQTTUpdate(menuItems[selectedMenuItem], currentVoltage);
+        lastDebounceTime = millis();
+      }
+    }
+    
+    lastSwitchState = currentSwitchState;
+    
+    // Meet batterijspanning
     display.setFont(&FreeMono9pt7b);
     int rawValue = analogRead(BATTERY_PIN);
-    float voltage = rawValue * (3.3 / 4095.0);
+    currentVoltage = rawValue * (3.3 / 4095.0);
+    
     display.fillRect(0, 20, 128, 40, SSD1306_BLACK);
     display.drawRect(32, 28, 64, 16, SSD1306_WHITE);
     display.drawRect(96, 32, 4, 8, SSD1306_WHITE);
+    
     float maxVoltage = 1.5; // Default for AA/AAA/LR44
     if (strcmp(menuItems[selectedMenuItem], "CR2032") == 0) {
       maxVoltage = 3.0; // CR2032 is 3V
     } else if (strcmp(menuItems[selectedMenuItem], "9V") == 0) {
       maxVoltage = 9.0; // 9V battery
     }
-    int levelWidth = map(voltage * 100, 0, maxVoltage * 100, 0, 60);
+    
+    int levelWidth = map(currentVoltage * 100, 0, maxVoltage * 100, 0, 60);
     levelWidth = constrain(levelWidth, 0, 60);
     display.fillRect(34, 30, levelWidth, 12, SSD1306_WHITE);
-    if (voltage > 0.5) {
+    
+    if (currentVoltage > 0.5) {
       display.drawBitmap(88, 32, lightning_icon, 8, 8, WHITE);
     }
+    
     display.setTextColor(SSD1306_WHITE);
     char voltString[10];
-    sprintf(voltString, "%0.2fV", voltage);
+    sprintf(voltString, "%0.2fV", currentVoltage);
     int16_t x1, y1;
     uint16_t w, h;
     display.getTextBounds(voltString, 0, 0, &x1, &y1, &w, &h);
     display.setCursor((SCREEN_WIDTH - w) / 2, 57);
     display.print(voltString);
+    
     display.setFont(NULL);
     display.setTextSize(1);
     float threshold = (maxVoltage * 0.7); // 70% as threshold
-    if (voltage >= threshold) {
+    if (currentVoltage >= threshold) {
       display.setCursor(2, 20);
       display.print("STATUS: GOOD");
-    } else if (voltage >= (maxVoltage * 0.3)) {
+    } else if (currentVoltage >= (maxVoltage * 0.3)) {
       display.setCursor(2, 20);
       display.print("STATUS: LOW");
     } else {
       display.setCursor(2, 20);
       display.print("STATUS: REPLACE");
     }
-    display.display();    
-    if (digitalRead(BACK_PIN) == LOW) {
+    
+    display.display();
+    
+    if (currentBackState == LOW && lastBackState == HIGH) {
       inSubMenu = false;
       delay(200); // Short delay to prevent bouncing
       updateMenu();
       break;
     }
+    
+    lastBackState = currentBackState;
+    
+    // Verwerk MQTT-berichten
+    mqttClient.loop();
+    
     delay(300);
   }
 }
-
 
 void setup() {
   pinMode(SWITCH_PIN, INPUT_PULLUP);
@@ -173,6 +303,10 @@ void setup() {
     while (true);
   }
   showStartupScreen();
+  
+  // Initialiseer WiFi en MQTT
+  setupWiFiAndMQTT();
+  
   updateMenu();
 }
 
@@ -180,6 +314,7 @@ void loop() {
   bool currentSwitchState = digitalRead(SWITCH_PIN);
   bool currentSelectState = digitalRead(SELECT_PIN);
   bool currentBackState = digitalRead(BACK_PIN);  
+  
   if (!inSubMenu && currentSwitchState == LOW && lastSwitchState == HIGH) {
     if (millis() - lastDebounceTime > debounceDelay) {
       selectedMenuItem = (selectedMenuItem + 1) % menuLength;
@@ -187,6 +322,7 @@ void loop() {
       lastDebounceTime = millis();
     }
   }  
+  
   if (!inSubMenu && currentSelectState == LOW && lastSelectState == HIGH) {
     if (millis() - lastDebounceTime > debounceDelay) {
       inSubMenu = true;
@@ -194,7 +330,23 @@ void loop() {
       lastDebounceTime = millis();
     }
   }  
+  
   lastSwitchState = currentSwitchState;
   lastSelectState = currentSelectState;
   lastBackState = currentBackState;
+  
+  // Verwerk MQTT-berichten
+  mqttClient.loop();
+  
+  // Als de WiFi-verbinding verbroken is, probeer opnieuw te verbinden
+  static unsigned long lastWifiCheckTime = 0;
+  if (millis() - lastWifiCheckTime > 30000) { // Check elke 30 seconden
+    if (WiFi.status() != WL_CONNECTED) {
+      setupWiFiAndMQTT();
+    }
+    else if (!mqttClient.connected()) {
+      connectToMQTT();
+    }
+    lastWifiCheckTime = millis();
+  }
 }
