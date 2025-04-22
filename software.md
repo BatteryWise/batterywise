@@ -7,6 +7,7 @@ The software section of this project could be done in Arduino IDE, but our advic
 You need these two libraries:
 - Adafruit_GFX.h
 - Adafruit_SSD1306.h
+- PubSubClient
   
 Both can easily be installed within PlatformIO.
 
