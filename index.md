@@ -23,5 +23,5 @@ On this site, you can find a step-by-step tutorial to make your own ESP32-based 
     <li><strong>Elias Neels</strong></li>
     <li><strong>Thibaut Beck</strong></li>
   </ul>
-  <img src="logo.png" alt="Logo" style="height: 80px; margin-left: 20px;">
+  <img src="images/logo.png" alt="Logo" style="height: 80px; margin-left: 20px;">
 </div>
