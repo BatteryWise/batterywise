@@ -49,7 +49,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 // WiFi- en MQTT-configuratie
 const char* ssid = "ssid";
 const char* password = "password";
-const char* mqtt_server = "test.mosquitto.org";
+const char* mqtt_server = "mqtt_server";
 const int mqtt_port = 1883;
 const char* mqtt_user = ""; // Laat leeg indien niet nodig
 const char* mqtt_password = ""; // Laat leeg indien niet nodig
@@ -128,9 +128,12 @@ void sendMQTTUpdate(const char* batteryType, float voltage) {
   }
   
   if (mqttClient.connected()) {
-    // Maak JSON-bericht
+    // Maak JSON-bericht met voltage als string
+    char voltageStr[10];
+    sprintf(voltageStr, "%.2f", voltage);
+    
     char mqttMessage[100];
-    sprintf(mqttMessage, "{ \"batteryType\": \"%s\", \"voltage\": %.2f }", batteryType, voltage);
+    sprintf(mqttMessage, "{ \"batteryType\": \"%s\", \"voltage\": \"%s\" }", batteryType, voltageStr);
     
     // Verstuur bericht
     mqttClient.publish(MQTT_TOPIC, mqttMessage);
