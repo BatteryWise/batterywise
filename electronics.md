@@ -37,7 +37,7 @@ The schematic shows the connections between the different components:
   - SDA → **GPIO21**
 
 - **Battery probe:**
-  - **GPIO14**: ADC connection to the positive terminal of the battery.
+  - **GPIO33**: ADC connection to the positive terminal of the battery.
   - **GND**: Negative terminal of the battery.
 
 ### Summary of connections:
@@ -49,7 +49,7 @@ The schematic shows the connections between the different components:
 |                     | 3V3                   | 3V3              |
 |                     | SCK                   | GPIO22           |
 |                     | SDA                   | GPIO21           |
-| **Battery Probe**   | Positive Terminal     | GPIO14 (ADC)     |
+| **Battery Probe**   | Positive Terminal     | GPIO33 (ADC1)    |
 |                     | Negative Terminal     | GND              |
 
 ## Usage
