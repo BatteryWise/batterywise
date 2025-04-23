@@ -17,11 +17,12 @@ On this site, you can find a step-by-step tutorial to make your own ESP32-based 
 
 ### Team members:
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <ul style="margin: 0;">
+  <ul style="list-style: none; padding-left: 2em; margin: 0;">
     <li><strong>Beau Forrez</strong></li>
     <li><strong>Tano Pannekoucke</strong></li>
     <li><strong>Elias Neels</strong></li>
     <li><strong>Thibaut Beck</strong></li>
   </ul>
-  <img src="images/logo.png" alt="Logo" style="height: 80px; margin-left: 20px;">
+  <img src="images/logo.png" alt="Logo" style="height: 150px; margin-left: 40px;">
 </div>
+
