@@ -16,10 +16,10 @@ Welcome to our sustainable project within the course **Engineering & Sustainabil
     <p>On this site, you can find a step-by-step tutorial to make your own ESP32-based batterytester.</p>
 
     <ol>
-      <li><a href="materials.md">Materials</a></li>
-      <li><a href="electronics.md">Electronics</a></li>
-      <li><a href="software.md">Software</a></li>
-      <li><a href="site.md">Site</a></li>
+      <li><a href="materials.html">Materials</a></li>
+      <li><a href="electronics.html">Electronics</a></li>
+      <li><a href="software.html">Software</a></li>
+      <li><a href="site.html">Site</a></li>
     </ol>
 
     <p>
