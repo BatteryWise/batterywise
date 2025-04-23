@@ -259,7 +259,7 @@ void showBatteryMeasurement() {
     // Meet batterijspanning
     display.setFont(&FreeMono9pt7b);
     int rawValue = analogRead(BATTERY_PIN);
-    currentVoltage = rawValue * (3.3 / 4095.0);
+    currentVoltage = rawValue * (3 / 4095.0);
     
     display.fillRect(0, 20, 128, 40, SSD1306_BLACK);
     display.drawRect(32, 28, 64, 16, SSD1306_WHITE);
