@@ -42,7 +42,7 @@ Code:
 #define SWITCH_PIN 18
 #define SELECT_PIN 5
 #define BACK_PIN 17
-#define BATTERY_PIN 14
+#define BATTERY_PIN 33
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
