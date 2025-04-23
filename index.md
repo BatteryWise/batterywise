@@ -36,7 +36,7 @@ Welcome to our sustainable project within the course **Engineering & Sustainabil
   </div>
 
   <div style="flex-shrink: 0;">
-    <img src="images/logo.png" alt="Logo" style="height: 300px;">
+    <img src="images/logo.png" alt="Logo" style="height: 450px;">
   </div>
 </div>
 
